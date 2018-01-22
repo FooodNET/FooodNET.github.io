@@ -7,9 +7,9 @@ webpackJsonp([0],{
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var config = {
-    AuthEndpoint: "http://foodnetwebapi.azurewebsites.net/",
+    AuthEndpoint: "http://foodnetwebapi2.azurewebsites.net/",
     AuthSecret: "secret",
-    HttpsEndpoint: "http://foodnetwebapi.azurewebsites.net/api"
+    HttpsEndpoint: "http://foodnetwebapi2.azurewebsites.net/api"
 };
 exports.default = config;
 
