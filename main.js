@@ -1053,7 +1053,7 @@ var RecipeViewer = (function (_super) {
     RecipeViewer.prototype.render = function () {
         return (React.createElement("div", { style: { display: "flex", flexFlow: "column", marginLeft: "50px", alignItems: "center" } },
             React.createElement("div", { style: { display: "flex", justifyContent: "space-between", width: "850px" } },
-                React.createElement("div", { style: { display: "flex" } }, this.props.recipe && this.props.recipe.recipeTags.map(function (tag) {
+                React.createElement("div", { style: { display: "flex" } }, this.props.recipe && this.props.recipe.tags.map(function (tag) {
                     return React.createElement(material_ui_1.Chip, { labelColor: "#fff", labelStyle: { fontWeight: "bold" }, style: { marginRight: "5px" } }, tag.text);
                 })),
                 this.props.recipe && this.props.recipe.isPrivate &&
@@ -1161,7 +1161,7 @@ var RecipeCreator = (function (_super) {
                             id: this.state.actualRecipe.id,
                             title: this.state.actualRecipe.title,
                             description: this.state.actualRecipe.description,
-                            recipeTags: this.state.actualRecipe.recipeTags,
+                            tags: this.state.actualRecipe.tags,
                             products: this.state.actualRecipe.products,
                             isPrivate: this.state.actualRecipe.isPrivate
                         };
@@ -1184,7 +1184,7 @@ var RecipeCreator = (function (_super) {
                             id: this.state.actualRecipe.id,
                             title: this.state.actualRecipe.title,
                             description: this.state.actualRecipe.description,
-                            recipeTags: this.state.actualRecipe.recipeTags,
+                            tags: this.state.actualRecipe.tags,
                             products: this.state.actualRecipe.products,
                             isPrivate: this.state.actualRecipe.isPrivate
                         };
@@ -1220,23 +1220,23 @@ var RecipeCreator = (function (_super) {
         };
         _this.addTag = function (chosenTag, index) {
             var newTag = _this.state.tags[index];
-            var newTagsSet = _this.state.actualRecipe.recipeTags.slice();
+            var newTagsSet = _this.state.actualRecipe.tags.slice();
             newTagsSet.push(newTag);
             _this.setState({
-                actualRecipe: __assign({}, _this.state.actualRecipe, { recipeTags: newTagsSet }),
+                actualRecipe: __assign({}, _this.state.actualRecipe, { tags: newTagsSet }),
                 tagsSearchText: "",
             });
         };
         _this.deleteTag = function (tagId) {
             var newTags;
             newTags = [];
-            _this.state.actualRecipe.recipeTags.forEach(function (tag) {
+            _this.state.actualRecipe.tags.forEach(function (tag) {
                 if (tag.id !== tagId) {
                     newTags.push(tag);
                 }
             });
             _this.setState({
-                actualRecipe: __assign({}, _this.state.actualRecipe, { recipeTags: newTags })
+                actualRecipe: __assign({}, _this.state.actualRecipe, { tags: newTags })
             });
         };
         _this.fetchTags = function () { return __awaiter(_this, void 0, void 0, function () {
@@ -1265,7 +1265,7 @@ var RecipeCreator = (function (_super) {
         }); };
         _this.handleNewProductDialog = function (isOpen) { return _this.setState({ isNewProductOpen: isOpen }); };
         var emptyRecipe;
-        emptyRecipe = { id: uuidjs_1.generate(), title: "", description: "", products: [], recipeTags: [], isPrivate: false, isMy: true };
+        emptyRecipe = { id: uuidjs_1.generate(), title: "", description: "", products: [], tags: [], isPrivate: false, isMy: true };
         var recipe = _this.props.isInEdition ? _this.props.editedRecipe : emptyRecipe;
         _this.state = {
             actualRecipe: recipe,
@@ -1283,7 +1283,7 @@ var RecipeCreator = (function (_super) {
             React.createElement("div", { style: { display: "flex", flexFlow: "column", marginLeft: "50px", alignItems: "center" } },
                 React.createElement("div", { style: { display: "flex", justifyContent: "space-between", width: "850px" } },
                     React.createElement("div", { style: { display: "flex" } },
-                        this.state.actualRecipe.recipeTags.map(function (tag) {
+                        this.state.actualRecipe.tags.map(function (tag) {
                             return React.createElement(material_ui_1.Chip, { labelColor: "#fff", onRequestDelete: function () { return _this.deleteTag(tag.id); }, labelStyle: { fontWeight: "bold" }, style: { marginRight: "5px", height: "30px" } }, tag.text);
                         }),
                         React.createElement(material_ui_1.AutoComplete, { filter: material_ui_1.AutoComplete.caseInsensitiveFilter, dataSource: this.state.tags.map(function (tag) { return tag.text; }), searchText: this.state.tagsSearchText, onUpdateInput: function (text) { return _this.setState({ tagsSearchText: text }); }, onNewRequest: this.addTag })),
